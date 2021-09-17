@@ -19,7 +19,7 @@ all:			$(NAME)
 $(NAME) :		
 				@make -C ./libft
 				@cp ./libft/libft.a libft.a
-				@$(CC) $(FLAGS) $(SRC) -I mendoub.h  libft.a  -o $(NAME)
+				@$(CC)  $(SRC) -I mendoub.h  libft.a  -o $(NAME)
 
 
 clean:
