@@ -10,14 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mendoub.h"
+#include "./mendoub.h"
 
-int  calculate_Redavance_totale(int ps_0)
+static const char to_red[] = "\033...";
+static const char to_black[] = "\033...";
+
+int calculate_Redavance_totale(int ps_0)
 {
     int RPS;
     int RDPS;
     int temp;
-    char month[12][10] ={"640", "780", "882", "894", "1351", "1198", "1199", "1120", "1220", "998", "888", "707"};
+    char month[12][10] = {"640", "780", "882", "894", "1351", "1198", "1199", "1120", "1220", "998", "888", "707"};
 
     RPS = ps_0 * PF;
     RDPS = 0;
@@ -36,11 +39,15 @@ int main(int ac, char **ar)
     int PS_1;
     int step;
     int redevance_total;
+    int PS_OP;
+    int RT_OP;
     if (ac == 4)
     {
         PS_0 = ft_atoi(ar[1]);
         PS_1 = ft_atoi(ar[2]);
         step = ft_atoi(ar[3]);
+        PS_OP = 0;
+        RT_OP = MAX_INT;
         if (PS_0 < PS_MIN || PS_1 > PS_MAX || PS_0 > PS_1)
         {
             printf("Error\nPS Range \n");
@@ -48,17 +55,31 @@ int main(int ac, char **ar)
         }
         if (step <= 0)
         {
-             printf("Error\nstep must be greater than 0\n");
+            printf("Error\nstep must be greater than 0\n");
             return (-1);
         }
         while (PS_0 <= PS_1)
         {
-           redevance_total =  calculate_Redavance_totale(PS_0);
-            printf("pour PS = %d la redevance total = %d\n", PS_0, redevance_total);
+            redevance_total = calculate_Redavance_totale(PS_0);
 
+            printf("pour PS = %d la redevance total = %d\n", PS_0, redevance_total);
+            printf("_____________________________________________\n");
+            if (redevance_total < RT_OP)
+            {
+                RT_OP = redevance_total;
+                PS_OP = PS_0;
+            }
             PS_0 += step;
         }
-        printf("****************Done************\n");
+        printf(".\n");
+        printf(".\n");
+        printf(".\n");
+        printf(".\n");
+        printf(".\n");
+        printf("--------------------------------------------------\n");
+        printf("|La redevance Optimale = %d, pour  PS = %d|\n", redevance_total, PS_OP);
+        printf("---------------------------------------------------\n");
+
         return (0);
     }
     printf("Arguments Error\n");

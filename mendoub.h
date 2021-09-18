@@ -25,19 +25,8 @@
 #define PS_MIN 600
 #define PS_MAX 1350
 #define PF  600.3/12 // RPS = PS * PF/12 ; PF = 600.3 
+# define MAX_INT 2147483647
 
-// # define January    
-// # define February   
-// # define March   
-// # define April   
-// # define May   
-// # define June   
-// # define July   
-// # define August   
-// # define September   
-// # define October   
-// # define November   
-// # define December 
 
 
 # endif 
